@@ -11,18 +11,27 @@ class TodoList extends ConsumerWidget{
         final todoApp=ref.watch(todoAppProvider);
         return Scaffold(
             appBar:AppBar(
-                title:Text('Todo一覧 (完了済み${todoApp.completedList.length}/${todoApp.unCompletedList.length+todoApp.completedList.length})',
+                title:Text(
+                    todoApp.bottomIndex==1 
+                    ?'Todo一覧 (完了済み${todoApp.completedList.length}/${todoApp.unCompletedList.length+todoApp.completedList.length})'
+                    :'Todo一覧 (完了済み${todoApp.unCompletedList.length}/${todoApp.unCompletedList.length+todoApp.completedList.length})',
                     style:TextStyle(color:Colors.white),
                 ),
                 backgroundColor:Colors.blue,
             ),
             body: Center(
                 child:ListView.builder(
-                    itemCount:todoApp.shownList.length,
+                    itemCount:todoApp.bottomIndex==1
+                                ?todoApp.completedList.length
+                                :todoApp.unCompletedList.length,
                     itemBuilder:(BuildContext context,int index){
                         return Card(
                             child:ListTile(
-                                title:Text('${index+1} ${todoApp.shownList[index].title}'),
+                                title:Text(
+                                    todoApp.bottomIndex==1
+                                    ?'${index+1} ${todoApp.completedList[index].title}'
+                                    :'${index+1} ${todoApp.unCompletedList[index].title}',
+                                ),
                                 onTap:(){
                                     Navigator.of(context).pushNamed(
                                         '/detail',
@@ -45,7 +54,7 @@ class TodoList extends ConsumerWidget{
             ),
             bottomNavigationBar:BottomNavigationBar(
                 currentIndex:todoApp.bottomIndex,
-                items:const[
+                items:[
                     BottomNavigationBarItem(
                         icon:Icon(Icons.bookmark),
                         label:'未完了',

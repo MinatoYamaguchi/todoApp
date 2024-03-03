@@ -31,11 +31,13 @@ class TodoDetail extends ConsumerWidget {
                             Card(
                                 margin:EdgeInsets.only(bottom:40.0),
                                 child:Container(
-                                    // margin:EdgeInsets.only(bottom:40.0),
                                     margin:EdgeInsets.only(top:2.0,left:3.0),
                                     width:300,
                                     height:40,
-                                    child:Text(todoApp.shownList[index].title),
+                                    child:Text(
+                                        todoApp==1
+                                        ?todoApp.completedList[index].title
+                                        :todoApp.unCompletedList[index].title,),
                                 ),
                             ),
                             Container(
@@ -49,18 +51,22 @@ class TodoDetail extends ConsumerWidget {
                                     margin:EdgeInsets.all(8.0),
                                     width:300,
                                     height:200,
-                                    child:Text(todoApp.shownList[index].content),
+                                    child:Text(
+                                        todoApp==1
+                                        ?todoApp.completedList[index].title
+                                        :todoApp.unCompletedList[index].title,
+                                    ),
                                 ),
                             ),
                             Container(
                                 width:300,
                                 child:ElevatedButton(
                                     onPressed:(){
-                                        todoApp.replaceTodoItem(index);
+                                        todoApp.changeTodoItem(index);
                                         Navigator.of(context).pop();
                                     },
                                     child:Text(
-                                        todoApp.shownList[index].isCompleted ?'完了にする':'未完了にする',
+                                        todoApp.bottomIndex==0 ?'完了にする':'未完了にする',
                                         style:TextStyle(color:Colors.white),
                                         ),
                                     style: ElevatedButton.styleFrom(

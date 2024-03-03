@@ -29,13 +29,14 @@ class _TodoAddPageState extends ConsumerState<TodoAddPage>{
                         mainAxisAlignment:MainAxisAlignment.center,
                         children:[
                             Container(
-                                margin:EdgeInsets.only(bottom:32.0),
+                                margin:EdgeInsets.only(bottom:40.0),
                                 width:300,
                                 child:TextFormField(
                                     decoration:InputDecoration(
                                         labelText:'タイトル',
                                     ),
                                     maxLength:30,
+                                    keyboardType:TextInputType.multiline,
                                     onSaved:(value){
                                         formValue['title']=value.toString();
                                     },
@@ -49,7 +50,7 @@ class _TodoAddPageState extends ConsumerState<TodoAddPage>{
                                 ),
                             ),
                             Container(
-                                margin:EdgeInsets.only(bottom:32.0),           
+                                margin:EdgeInsets.only(bottom:40.0),           
                                 width:300,
                                 child:TextFormField(
                                     minLines:6,
@@ -65,9 +66,10 @@ class _TodoAddPageState extends ConsumerState<TodoAddPage>{
                                     },
                                     validator:(value){
                                         if(value==null||value.isEmpty){
-                                        return '入力してください';
+                                            return '入力してください';
                                         }else{
-                                        return null;}
+                                            return null;
+                                        }
                                     },
                                 ),
                             ),
@@ -81,7 +83,7 @@ class _TodoAddPageState extends ConsumerState<TodoAddPage>{
                                             Navigator.of(context).pop();
                                         }
                                     },
-                                    child:const Text('Todoを追加',
+                                    child:Text('Todoを追加',
                                         style:TextStyle(color:Colors.white),
                                     ),
                                     style: ElevatedButton.styleFrom(
