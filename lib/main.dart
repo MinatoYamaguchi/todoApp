@@ -1,15 +1,15 @@
+// import 'package:provider_package/provider_scope./dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'todo_add.dart';
 import 'todo_detail.dart';
-import 'todo_item.dart';
 import 'todo_list.dart';
-import 'providers.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
     const ProviderScope(
-      child:MyApp(),
+      child: MyApp(),
     ),
   );
 }
@@ -22,19 +22,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'todo app',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor:Colors.blue,
-          foregroundColor:Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       initialRoute: '/',
-      routes:{
-        '/':(context)=>const TodoList(),
-        '/detail':(context)=>const TodoDetail(),
-        '/add':(context)=>const TodoAddPage(),
-      },      
+      routes: {
+        '/': (context) => const TodoList(),
+        '/detail': (context) => const TodoDetail(),
+        '/add': (context) => const TodoAddPage(),
+      },
     );
   }
 }
