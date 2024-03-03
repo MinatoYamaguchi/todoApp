@@ -44,7 +44,7 @@ class TodoDetail extends ConsumerWidget {
                                 child:Text('内容'),
                             ),
                             Card(
-                                margin:EdgeInsets.only(bottom:40.0),
+                                margin:EdgeInsets.only(bottom:42.0),
                                 child:Container(
                                     margin:EdgeInsets.all(8.0),
                                     width:300,
