@@ -8,40 +8,32 @@ class AppChangeNotifier extends ChangeNotifier{
         TodoItem(
             id:0,
             title:'hoge',
-            content:'hogehoge',
+            content:'hoge-content',
             isCompleted:false,
         ),
         TodoItem(
             id:1,
-            title:'ggh',
-            content:'jhbeb',
-            isCompleted:true,
+            title:'ssh',
+            content:'ssh',
+            isCompleted:false,
         ),
     ];
     final List<TodoItem>completedList=[
         TodoItem(
             id:2,
-            title:'fluttet',
-            content:'python',
-            isCompleted:false,
+            title:'python',
+            content:'再帰関数',
+            isCompleted:true,
         ),
         TodoItem(
             id:3,
-            title:'nvjhdb',
-            content:'vuebv',
+            title:'flutter',
+            content:'非同期処理',
             isCompleted:true,
         ),
     ];
 
     int bottomIndex=0;
-
-    List<TodoItem>get shownList{
-        if(bottomIndex==0){
-            return completedList;
-        }else{
-            return unCompletedList;
-        }
-    }
         
     void bottomIndexChange(int index){
         bottomIndex=index;
@@ -61,10 +53,15 @@ class AppChangeNotifier extends ChangeNotifier{
         notifyListeners();
     }
 
-    void replaceTodoItem(int index){
-        final specifiedItem=shownList[index];
+    void changeTodoItem(int index){
+        final TodoItem specifiedItem;
+        if(bottomIndex==1){
+            specifiedItem=completedList[index];
+        }else{
+            specifiedItem=unCompletedList[index];
+        }
         specifiedItem.toggleIsCompleted();
-        if(shownList[index].isCompleted){
+        if(specifiedItem.isCompleted){
             completedList.removeAt(index);
             unCompletedList.add(specifiedItem);
         }else{
